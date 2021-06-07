@@ -1,0 +1,32 @@
+@use '../../constants';
+
+.login {
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.95);
+  height: 100vh;
+  // overflow: hidden;
+  img {
+    width: 70%;
+    @media only screen and (min-width: constants.$sm) {
+      width: 50%;
+    }
+    @media only screen and (min-width: constants.$md) {
+      width: 45%;
+    }
+    @media only screen and (min-width: constants.$lg) {
+      width: 40%;
+    }
+    @media only screen and (min-width: constants.$xl) {
+      width: 30%;
+    }
+  }
+  a {
+    padding: 20px;
+    border-radius: 99px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    background-color: constants.$spotify-green;
+  }
+}

@@ -1,0 +1,92 @@
+@use '../../../../../../constants';
+
+.user-info {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  @media only screen and (min-width: constants.$sm) {
+    right: 0;
+  }
+  min-width: max-content;
+  display: flex;
+  flex-direction: column;
+  //   justify-content: flex-end;
+  align-items: flex-end;
+  button {
+    max-width: max-content;
+    margin: 10px 20px 0 0;
+    border-radius: 99px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border: none;
+    display: flex;
+    align-items: center;
+    // padding: 5px 20px;
+    padding: 3px;
+    box-shadow: 4px 0px 7px 0px rgba(0, 0, 0, 0.53);
+    img {
+      width: 30px;
+      height: auto;
+      border-radius: 99px;
+      margin-right: 10px;
+    }
+    span {
+      color: azure;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    .icon {
+      color: azure;
+      font-size: large;
+      margin-right: 5px;
+    }
+  }
+  button:hover {
+    background-color: rgb(36, 36, 36);
+    cursor: pointer;
+  }
+  button:focus {
+    background-color: rgb(36, 36, 36);
+  }
+  .user-menu {
+    margin: 10px 20px 0 0;
+    padding: 10px 0 13px 0;
+    width: 50%;
+    @media only screen and (min-width: constants.$sm) {
+      width: 40%;
+    }
+    @media only screen and (min-width: constants.$md) {
+      width: 30%;
+    }
+    @media only screen and (min-width: constants.$lg) {
+      width: 20%;
+    }
+    @media only screen and (min-width: constants.$xl) {
+      width: 15%;
+    }
+    background-color: rgb(36, 36, 36);
+    color: azure;
+    border-radius: 5px;
+    .profile-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+  }
+  .divider {
+    background-color: gray;
+    margin: 10px auto 10px auto;
+    width: 90%;
+    height: 1px;
+  }
+  a {
+    text-decoration: none;
+    color: azure;
+    padding: 0 10px 0 10px;
+    font-weight: normal;
+    width: 90%;
+  }
+}
+
+.hidden {
+  display: none;
+}

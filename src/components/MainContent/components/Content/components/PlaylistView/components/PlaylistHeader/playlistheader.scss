@@ -1,0 +1,122 @@
+@use '../../../../../../../../constants';
+
+.playlist-header {
+  user-select: none;
+  overflow: hidden;
+  width: 100%;
+  height: 30%;
+  @media only screen and (min-width: constants.$sm) {
+    height: 45%;
+    background: rgb(70, 70, 142);
+    background: linear-gradient(
+      180deg,
+      rgba(70, 70, 142, 1) 0%,
+      rgba(57, 41, 98, 1) 100%
+    );
+  }
+  background: rgb(70, 70, 142);
+  background: linear-gradient(
+    180deg,
+    rgba(70, 70, 142, 1) 0%,
+    rgba(57, 41, 98, 1) 60%,
+    rgba(57, 41, 98, 0) 100%
+  );
+  @media only screen and (min-width: constants.$md) {
+    padding-bottom: 2em;
+  }
+  .playlist-logo-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    @media only screen and (min-width: constants.$sm) {
+      height: auto;
+      align-items: flex-end;
+      justify-content: flex-start;
+      //   margin: 4em 0 2em 2em;
+      margin: 6em 0 0 2em;
+    }
+    .playlist-logo {
+      display: none;
+      @media only screen and (min-width: constants.$sm) {
+        display: block;
+      }
+      background: rgb(51, 51, 255);
+      background: linear-gradient(
+        144deg,
+        rgba(51, 51, 255, 1) 0%,
+        rgba(120, 116, 203, 1) 47%,
+        rgba(171, 181, 171, 1) 100%
+      );
+      height: 11em;
+      width: 11em;
+      @media only screen and (min-width: constants.$md) {
+        height: 14em;
+        width: 14em;
+      }
+      color: azure;
+      -webkit-box-shadow: 0px 0px 24px 9px rgba(34, 60, 80, 0.47);
+      -moz-box-shadow: 0px 0px 24px 9px rgba(34, 60, 80, 0.47);
+      box-shadow: 0px 0px 24px 9px rgba(34, 60, 80, 0.47);
+      .heart {
+        font-size: 5em;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .playlist {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      color: azure;
+      font-weight: bold;
+      @media only screen and (min-width: constants.$sm) {
+        margin-left: 1em;
+        justify-content: flex-end;
+      }
+      .playlist-span {
+        font-size: 0.8em;
+        display: none;
+        @media only screen and (min-width: constants.$sm) {
+          display: block;
+        }
+      }
+      .playlist-name {
+        font-size: 1.5em;
+        @media only screen and (min-width: constants.$sm) {
+          font-size: 3em;
+        }
+        @media only screen and (min-width: constants.$md) {
+          font-size: 4em;
+        }
+        @media only screen and (min-width: constants.$lg) {
+          font-size: 6em;
+        }
+      }
+      .playlist-user-info {
+        display: none;
+        @media only screen and (min-width: constants.$sm) {
+          display: flex;
+        }
+        align-items: center;
+        img {
+          width: 1.5em;
+          border-radius: 99px;
+          margin-right: 0.5em;
+        }
+        span:first-of-type {
+          font-size: 0.9em;
+          margin-right: 0.5em;
+        }
+        span:nth-of-type(2) {
+          font-weight: normal;
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+}

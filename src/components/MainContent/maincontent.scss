@@ -1,0 +1,21 @@
+@use '../../constants';
+
+.main-page {
+  min-width: 350px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  height: 100vh;
+  .main-page-content {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 90% 10%;
+    @media only screen and (min-width: constants.$sm) {
+      grid-template-columns: 20% auto;
+      grid-template-rows: auto;
+    }
+    @media only screen and (min-width: constants.$lg) {
+      grid-template-columns: 15% auto;
+      grid-template-rows: auto;
+    }
+  }
+}

@@ -1,0 +1,166 @@
+@use '../../../../../../../../constants';
+
+.songs {
+  font-family: constants.$spotify-font;
+  user-select: none;
+  padding: 2em 0.5em 0 0.5em;
+  @media screen and (min-width: constants.$md) {
+    padding: 2em 3em 1em 3em;
+  }
+  color: rgba(255, 255, 255, 0.5);
+  .grid-header {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    @media screen and (min-width: constants.$sm) {
+      grid-template-columns: 5% 40% 25% 20% 10%;
+    }
+    .title {
+      font-size: 0.8em;
+      font-weight: 400;
+      border-bottom: 1px solid;
+      border-color: rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+      &:nth-of-type(1) {
+        text-align: center;
+      }
+      &:nth-of-type(5) {
+        text-align: center;
+      }
+    }
+  }
+  button {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: constants.$spotify-font;
+    font-weight: 500;
+    border-radius: 3px;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: azure;
+      .number {
+        display: none !important;
+      }
+      .play-icon {
+        @media screen and (min-width: constants.$sm) {
+          display: flex !important;
+        }
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+      }
+      .duration {
+        .remove-from-liked-icon {
+          visibility: visible;
+        }
+      }
+    }
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.3);
+      color: azure;
+    }
+    .song {
+      display: grid;
+      grid-template-columns: 85% 15%;
+      @media screen and (min-width: constants.$sm) {
+        grid-template-columns: 5% 40% 25% 20% 10%;
+      }
+    }
+    .number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+    .play-icon {
+      display: none !important;
+    }
+    .song-name-wrapper {
+      display: flex;
+      padding: 0.5em 0 0.5em 0;
+      img {
+        padding-left: 0.5em;
+        @media screen and (min-width: constants.$sm) {
+          padding-left: 0;
+        }
+        width: 3em;
+        height: 3em;
+      }
+      .song-name {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding-left: 0.5em;
+        span {
+          font-size: 0.9em;
+          font-weight: 500;
+          font-family: constants.$spotify-font;
+          &:nth-of-type(1) {
+            color: azure;
+            font-size: 1.1em;
+          }
+          &:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+          }
+        }
+        .explicit-icon {
+          font-size: large;
+          padding-right: 0.2em;
+        }
+      }
+    }
+    .time-added {
+      font-size: 1em;
+    }
+    .flex-align-center {
+      display: flex;
+      align-items: center;
+      text-align: left;
+    }
+    .duration {
+      justify-content: center;
+      padding-right: 2em;
+      span:nth-of-type(1) {
+        display: flex;
+        align-items: center;
+      }
+      .add-to-liked-icon {
+        color: constants.$spotify-green;
+        padding-right: 1em;
+        @media screen and (min-width: constants.$md) {
+          padding-right: 1em;
+        }
+        font-size: 1.2em;
+      }
+      .remove-from-liked-icon {
+        visibility: hidden;
+        color: rgba(255, 255, 255, 0.5);
+        padding-right: 1em;
+        @media screen and (min-width: constants.$md) {
+          padding-right: 1em;
+        }
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+.sm-block {
+  display: none !important;
+  @media screen and (min-width: constants.$sm) {
+    display: block !important;
+  }
+}
+
+.sm-flex {
+  display: none !important;
+  @media screen and (min-width: constants.$sm) {
+    display: flex !important;
+  }
+}

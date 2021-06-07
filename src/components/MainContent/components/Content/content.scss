@@ -1,0 +1,32 @@
+@use '../../../../constants';
+
+.content {
+  height: 100%;
+  width: auto;
+  overflow: overlay;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0.8em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(191, 191, 191, 0);
+  @media only screen and (min-width: constants.$sm) {
+    background: rgba(191, 191, 191, 0.6);
+  }
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(191, 191, 191, 0);
+  @media only screen and (min-width: constants.$sm) {
+    background: rgba(191, 191, 191, 0.8);
+  }
+}
