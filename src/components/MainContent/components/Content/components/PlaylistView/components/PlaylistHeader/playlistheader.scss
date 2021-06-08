@@ -133,11 +133,19 @@
         }
       }
       .playlist-user-info {
-        display: none;
-        @media only screen and (min-width: constants.$sm) {
-          display: flex;
+        display: flex;
+        .playlist-user-info-sm {
+          display: none;
+          @media only screen and (min-width: constants.$sm) {
+            display: block;
+          }
         }
         align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        @media only screen and (min-width: constants.$sm) {
+          margin-left: 0;
+        }
         img {
           width: 1.5em;
           border-radius: 99px;

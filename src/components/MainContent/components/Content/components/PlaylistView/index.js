@@ -29,6 +29,7 @@ const PlaylistView = () => {
       ></PlaylistHeader>
       <SongsView
         songs={isLikedSongs ? user.likedSongs : playlist?.tracks.items}
+        isLikedSongs={isLikedSongs}
       ></SongsView>{" "}
     </div>
   );

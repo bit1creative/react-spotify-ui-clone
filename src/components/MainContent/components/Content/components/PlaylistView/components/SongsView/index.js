@@ -1,18 +1,25 @@
 import "./songsview.scss";
+import { useEffect } from "react";
+import { checkForSavedTracksInPlaylist } from "store/slices/tempPlaylistSlice";
+import { fetchUsersSavedTracks } from "store/slices/userInfoSlice";
+import { removeSongFromSaved, addSongToSaved } from "services/spotifyApi";
+import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import { checkIfSongSaved } from "services/spotifyApi";
 import { BsClock } from "react-icons/bs";
+import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { BiPlay } from "react-icons/bi";
 import { MdExplicit } from "react-icons/md";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
-const Song = ({ song, index }) => {
+const Song = ({ song, index, isSaved }) => {
+  const [songIsSaved, setSongIsSaved] = useState(isSaved);
+  const dispatch = useDispatch();
   function calcDate(date) {
     return moment(moment()).isSame(date, "day")
-      ? moment().hours() - date.hours() === 0
+      ? moment().diff(date, "hours") === 0
         ? "Recently"
-        : moment().hours() - date.hours() === 1
+        : moment().diff(date, "hours") === 1
         ? moment().hours() - date.hours() + " hour ago"
         : moment().hours() - date.hours() + " hours ago"
       : moment().diff(date, "days") < 2
@@ -20,6 +27,20 @@ const Song = ({ song, index }) => {
       : moment().diff(date, "days") < 7
       ? moment().diff(date, "days") + " days ago"
       : moment(date).format("MMM D, YYYY");
+  }
+
+  async function handleHeartClick(e) {
+    const id = e.currentTarget.getAttribute("song-id");
+    if (songIsSaved) {
+      e.currentTarget.parentNode.classList.add("shake");
+      setTimeout(() => setSongIsSaved(!songIsSaved), 820);
+      await removeSongFromSaved(id);
+    } else {
+      e.currentTarget.parentNode.classList.add("toggle");
+      setTimeout(() => setSongIsSaved(!songIsSaved), 200);
+      await addSongToSaved(id);
+    }
+    return setTimeout(() => dispatch(fetchUsersSavedTracks()), 200);
   }
 
   return (
@@ -52,14 +73,19 @@ const Song = ({ song, index }) => {
           {calcDate(moment(song.added_at))}
         </span>
         <div className="flex-align-center duration">
-          {/* {checkIfSongSaved([song.track.id]) ? ( */}
-          {0 ? (
-            <span className="add-to-liked-icon">
-              <FaHeart />
+          {songIsSaved ? (
+            <span className="heart-icon add-to-liked-icon">
+              <FaHeart
+                song-id={song.track.id}
+                onClick={(e) => handleHeartClick(e)}
+              />
             </span>
           ) : (
-            <span className="remove-from-liked-icon">
-              <FaRegHeart />
+            <span className="heart-icon remove-from-liked-icon">
+              <FaRegHeart
+                song-id={song.track.id}
+                onClick={(e) => handleHeartClick(e)}
+              />
             </span>
           )}
           <span>{moment(song.track.duration_ms).format("m:ss")}</span>
@@ -69,10 +95,22 @@ const Song = ({ song, index }) => {
   );
 };
 
-const SongsView = ({ songs }) => {
+const SongsView = ({ songs, isLikedSongs }) => {
+  const playlist = useSelector((state) => state.playlist.songsAreSaved);
   const songsList = songs?.map((song, index) => (
-    <Song key={song.track.id} song={song} index={index} />
+    <Song
+      key={song.track.id}
+      song={song}
+      index={index}
+      isSaved={isLikedSongs ? String(true) : String(playlist[index])}
+    />
   ));
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (songs) dispatch(checkForSavedTracksInPlaylist(songs));
+  }, [songs]);
+
   return (
     <div className="songs">
       <div className="grid-header">

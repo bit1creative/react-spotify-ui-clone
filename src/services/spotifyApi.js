@@ -1,5 +1,5 @@
-import IDS from "./playlistIds.json";
-import axios from "axios";
+// import IDS from "./playlistIds.json";
+// import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-js";
 const spotifyClient = new SpotifyWebApi();
 
@@ -51,8 +51,8 @@ const getPlaylistTracks = async (id, offset = 100, songs = []) => {
     });
 };
 
-export const checkIfSongSaved = async (id) => {
-  return await spotifyClient.containsMySavedTracks(id);
+export const checkIfSongsSaved = async (ids) => {
+  return await spotifyClient.containsMySavedTracks(ids);
 };
 
 export const getUsersPlaylists = async (offset = 0, playlists = []) => {
@@ -66,6 +66,14 @@ export const getUsersPlaylists = async (offset = 0, playlists = []) => {
       }
       return mergedPlaylists;
     });
+};
+
+export const removeSongFromSaved = async (id) => {
+  return await spotifyClient.removeFromMySavedTracks([id]);
+};
+
+export const addSongToSaved = async (id) => {
+  return await spotifyClient.addToMySavedTracks([id]);
 };
 
 // export const userAPI = async (token) =>

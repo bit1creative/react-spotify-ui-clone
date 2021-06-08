@@ -1,6 +1,6 @@
 import "./sidebar.scss";
 import { Link } from "react-router-dom";
-import { BsThreeDots, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import { FiHome } from "react-icons/fi";
 import { ImBooks } from "react-icons/im";
 import { AiFillPlusSquare, AiOutlineHeart } from "react-icons/ai";

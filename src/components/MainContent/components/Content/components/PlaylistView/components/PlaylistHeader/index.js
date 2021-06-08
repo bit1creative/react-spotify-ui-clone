@@ -17,7 +17,11 @@ const PlaylistHeader = ({ user, playlist, isLikedSongs }) => {
                   <FaHeart />
                 </span>
               ) : (
-                <img src={playlist.images[0].url} className="playlist-logo" />
+                <img
+                  src={playlist.images[0].url}
+                  alt="playlist cover"
+                  className="playlist-logo"
+                />
               )}
             </div>
           ) : (
@@ -35,8 +39,12 @@ const PlaylistHeader = ({ user, playlist, isLikedSongs }) => {
               )}
             </span>
             <div className="playlist-user-info">
-              <img src={user.imageLink} alt="user" />
-              <span>{user.username}</span>
+              <img
+                src={user.imageLink}
+                alt="user"
+                className="playlist-user-info-sm"
+              />
+              <span className="playlist-user-info-sm">{user.username}</span>
               <span>
                 {playlist || isLikedSongs ? (
                   <>
