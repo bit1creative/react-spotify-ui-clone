@@ -24,6 +24,36 @@
   @media only screen and (min-width: constants.$md) {
     padding-bottom: 2em;
   }
+  .css-15jvbsq-SkeletonTheme {
+    height: 100%;
+  }
+  .sm {
+    display: none;
+    @media only screen and (min-width: constants.$sm) {
+      display: block;
+      margin-bottom: 2em;
+    }
+    @media only screen and (min-width: constants.$md) {
+      margin-bottom: 0;
+    }
+  }
+  .skeleton-playlist-name {
+    @media screen and (min-width: constants.$sm) {
+      height: 80px;
+      width: 250px;
+      margin-bottom: 0.3em;
+    }
+    @media screen and (min-width: constants.$md) {
+      height: 90px;
+      width: 350px;
+      margin-bottom: 0.2em;
+    }
+    @media screen and (min-width: constants.$lg) {
+      height: 100px;
+      width: 400px;
+      margin-bottom: 0.2em;
+    }
+  }
   .playlist-logo-wrapper {
     height: 100%;
     display: flex;
@@ -77,6 +107,10 @@
       @media only screen and (min-width: constants.$sm) {
         margin-left: 1em;
         justify-content: flex-end;
+        padding-bottom: 2em;
+      }
+      @media only screen and (min-width: constants.$md) {
+        padding-bottom: 0em;
       }
       .playlist-span {
         font-size: 0.8em;
@@ -86,6 +120,7 @@
         }
       }
       .playlist-name {
+        // width: 100%;
         font-size: 1.5em;
         @media only screen and (min-width: constants.$sm) {
           font-size: 3em;

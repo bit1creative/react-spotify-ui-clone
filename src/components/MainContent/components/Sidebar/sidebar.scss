@@ -48,6 +48,9 @@
       @media only screen and (min-width: constants.$sm) {
         width: 100%;
       }
+      .playlist-link-span {
+        padding-left: 1em;
+      }
     }
 
     button {
@@ -101,8 +104,15 @@
         background-color: rgba(255, 255, 255, 0.1);
         color: white;
       }
+      .active-btn {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
     }
     .secondary-btn:focus {
+      color: white;
+    }
+    .active-link {
       color: white;
     }
     .gap {

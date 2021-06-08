@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getUserInfo, getUsersSavedTracks } from "services/spotifyApi";
+import {
+  getUserInfo,
+  getUsersSavedTracks,
+  getUsersPlaylists,
+} from "services/spotifyApi";
 
 export const fetchUserInfo = createAsyncThunk(
   "user/fetchUserInfo",
@@ -17,6 +21,14 @@ export const fetchUsersSavedTracks = createAsyncThunk(
   }
 );
 
+export const fetchUsersPlaylists = createAsyncThunk(
+  "user/fetchUsersPlaylists",
+  async () => {
+    const data = await getUsersPlaylists();
+    return data;
+  }
+);
+
 export const userInfoSlice = createSlice({
   name: "user",
   initialState: {
@@ -24,16 +36,7 @@ export const userInfoSlice = createSlice({
     link: null,
     imageLink: null,
     likedSongs: null,
-  },
-  reducers: {
-    // setUserInfo: (state, action) => {
-    //   return {
-    //     ...state,
-    //     username: action.payload.display_name,
-    //     link: action.payload.external_urls.spotify,
-    //     imageLink: action.payload.images[0].url,
-    //   };
-    // },
+    playlists: null,
   },
   extraReducers: {
     [fetchUserInfo.fulfilled]: (state, action) => {
@@ -50,9 +53,13 @@ export const userInfoSlice = createSlice({
         likedSongs: action.payload,
       };
     },
+    [fetchUsersPlaylists.fulfilled]: (state, action) => {
+      return {
+        ...state,
+        playlists: action.payload,
+      };
+    },
   },
 });
-
-// export const { setUserInfo } = userInfoSlice.actions;
 
 export default userInfoSlice.reducer;

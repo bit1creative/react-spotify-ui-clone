@@ -33,7 +33,6 @@ export const getPlaylist = async (id, playlist = {}) => {
         ...mergedPlaylist.tracks.items,
         ...extraSongs,
       ];
-      console.log(mergedPlaylist.tracks.items.length);
     }
     return mergedPlaylist;
   });
@@ -54,6 +53,19 @@ const getPlaylistTracks = async (id, offset = 100, songs = []) => {
 
 export const checkIfSongSaved = async (id) => {
   return await spotifyClient.containsMySavedTracks(id);
+};
+
+export const getUsersPlaylists = async (offset = 0, playlists = []) => {
+  return await spotifyClient
+    .getUserPlaylists({ limit: 50, offset })
+    .then((res) => {
+      const mergedPlaylists = [...playlists, ...res.items];
+      if (res.next) {
+        offset += 50;
+        return getUsersPlaylists(offset, mergedPlaylists);
+      }
+      return mergedPlaylists;
+    });
 };
 
 // export const userAPI = async (token) =>

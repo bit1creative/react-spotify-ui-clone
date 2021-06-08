@@ -8,9 +8,7 @@ const Content = () => {
     <div className="content">
       <UserInfo></UserInfo>
       <Switch>
-        <Route path="/liked">
-          <PlaylistView playlist={"likedSongs"} />
-        </Route>
+        <Route path="/playlist/:id" children={<PlaylistView />}></Route>
       </Switch>
     </div>
   );

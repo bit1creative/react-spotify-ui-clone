@@ -5,6 +5,7 @@ import { BsClock } from "react-icons/bs";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { BiPlay } from "react-icons/bi";
 import { MdExplicit } from "react-icons/md";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const Song = ({ song, index }) => {
   function calcDate(date) {
@@ -14,10 +15,10 @@ const Song = ({ song, index }) => {
         : moment().hours() - date.hours() === 1
         ? moment().hours() - date.hours() + " hour ago"
         : moment().hours() - date.hours() + " hours ago"
-      : moment().diff(date, "days") === 0
+      : moment().diff(date, "days") < 2
       ? "Yesterday"
-      : moment().diff(date, "days") < 6
-      ? date.days() - moment().days() + " days ago"
+      : moment().diff(date, "days") < 7
+      ? moment().diff(date, "days") + " days ago"
       : moment(date).format("MMM D, YYYY");
   }
 
@@ -69,7 +70,7 @@ const Song = ({ song, index }) => {
 };
 
 const SongsView = ({ songs }) => {
-  const songsList = songs.map((song, index) => (
+  const songsList = songs?.map((song, index) => (
     <Song key={song.track.id} song={song} index={index} />
   ));
   return (
@@ -83,7 +84,16 @@ const SongsView = ({ songs }) => {
           <BsClock />
         </span>
       </div>
-      {songsList}
+      {songs ? (
+        songsList
+      ) : (
+        <SkeletonTheme
+          color="rgba(255, 255, 255, 0.1)"
+          highlightColor="rgba(255, 255, 255, 0.5)"
+        >
+          <Skeleton count={8} className="skeleton-song" />
+        </SkeletonTheme>
+      )}
     </div>
   );
 };

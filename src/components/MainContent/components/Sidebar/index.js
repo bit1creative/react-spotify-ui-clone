@@ -5,8 +5,22 @@ import { FiHome } from "react-icons/fi";
 import { ImBooks } from "react-icons/im";
 import { AiFillPlusSquare, AiOutlineHeart } from "react-icons/ai";
 import logo from "assets/spotify-logo-white.png";
+import { useSelector } from "react-redux";
+
+const PlaylistLink = ({ playlist }) => {
+  return (
+    <Link to={`/playlist/${playlist.id}`} className="secondary-btn">
+      <button>
+        <span className="playlist-link-span">{playlist.name}</span>
+      </button>
+    </Link>
+  );
+};
 
 const Sidebar = () => {
+  const playlistLinks = useSelector((state) => state.user.playlists)?.map(
+    (playlist) => <PlaylistLink key={playlist.id} playlist={playlist} />
+  );
   return (
     <div className="sidebar">
       <div className="menu">
@@ -25,7 +39,7 @@ const Sidebar = () => {
             <span>Search</span>
           </button>
         </Link>
-        <Link to="/liked">
+        <Link to="/playlist/liked">
           <button className="menu-btn">
             <ImBooks className="icon" />
             <span>Your Library</span>
@@ -36,13 +50,14 @@ const Sidebar = () => {
           <AiFillPlusSquare className="icon" />
           <span>Create Playlist</span>
         </button>
-        <Link to="/liked" className="secondary-btn">
+        <Link to="/playlist/liked" className="secondary-btn">
           <button>
             <AiOutlineHeart className="icon" />
             <span>Liked Songs</span>
           </button>
         </Link>
         <div className="divider"></div>
+        {playlistLinks}
       </div>
     </div>
   );

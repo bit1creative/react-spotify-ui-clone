@@ -12,8 +12,8 @@ import { setToken } from "store/slices/tokenSlice";
 import {
   fetchUserInfo,
   fetchUsersSavedTracks,
+  fetchUsersPlaylists,
 } from "store/slices/userInfoSlice";
-import { fetchPlaylist } from "store/slices/tempPlaylistSlice";
 
 function App() {
   const token = useSelector((state) => state.token.value);
@@ -24,18 +24,12 @@ function App() {
     window.location.hash = "";
     const _token = hash.access_token;
 
-    // const userInfo = async (token) => {
-    //   const data = await getUserInfo(token);
-    //   await dispatch(setUserInfo(data));
-    // };
-
     if (_token) {
       dispatch(setToken(_token));
       initializeSpotifyClient(_token);
       dispatch(fetchUserInfo());
       dispatch(fetchUsersSavedTracks());
-      dispatch(fetchPlaylist("4raIDgvPbAwipwRrd8ekxo"));
-      // userInfo(_token);
+      dispatch(fetchUsersPlaylists());
     }
   }, []);
   return token ? (
