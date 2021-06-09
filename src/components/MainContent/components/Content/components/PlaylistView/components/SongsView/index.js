@@ -1,6 +1,5 @@
 import "./songsview.scss";
 import { useEffect } from "react";
-import { checkForSavedTracksInPlaylist } from "store/slices/tempPlaylistSlice";
 import { fetchUsersSavedTracks } from "store/slices/userInfoSlice";
 import { removeSongFromSaved, addSongToSaved } from "services/spotifyApi";
 import { useSelector, useDispatch } from "react-redux";
@@ -49,9 +48,7 @@ const Song = ({ song, index, isSaved }) => {
         <div className="sm-flex number">
           <span>{index + 1}</span>
         </div>
-        <div className="play-icon sm-flex">
-          <BiPlay />
-        </div>
+        <BiPlay className="play-icon sm-flex" />
         <div className="song-name-wrapper">
           <img src={song.track.album.images[2].url} alt="" />
           <div className="song-name">
@@ -96,20 +93,16 @@ const Song = ({ song, index, isSaved }) => {
 };
 
 const SongsView = ({ songs, isLikedSongs }) => {
-  const playlist = useSelector((state) => state.playlist.songsAreSaved);
+  const songsAreSaved = useSelector((state) => state.playlist.songsAreSaved);
+
   const songsList = songs?.map((song, index) => (
     <Song
       key={song.track.id}
       song={song}
       index={index}
-      isSaved={isLikedSongs ? String(true) : String(playlist[index])}
+      isSaved={isLikedSongs || songsAreSaved[index]}
     />
   ));
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (songs) dispatch(checkForSavedTracksInPlaylist(songs));
-  }, [songs]);
 
   return (
     <div className="songs">

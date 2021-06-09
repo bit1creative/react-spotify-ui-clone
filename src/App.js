@@ -3,17 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { loginUrl, getTokenFromUrl } from "services/spotify";
 import { initializeSpotifyClient } from "services/spotifyApi";
-// import { userAPI } from "./services/spotifyApi";
 
 import LoginPage from "pages/LoginPage";
 import MainPage from "pages/MainPage";
 
 import { setToken } from "store/slices/tokenSlice";
-import {
-  fetchUserInfo,
-  fetchUsersSavedTracks,
-  fetchUsersPlaylists,
-} from "store/slices/userInfoSlice";
+import { fetchUserInfo } from "store/slices/userInfoSlice";
 
 function App() {
   const token = useSelector((state) => state.token.value);
@@ -28,10 +23,14 @@ function App() {
       dispatch(setToken(_token));
       initializeSpotifyClient(_token);
       dispatch(fetchUserInfo());
-      dispatch(fetchUsersSavedTracks());
-      dispatch(fetchUsersPlaylists());
+    }
+
+    if (token) {
+      initializeSpotifyClient(token);
+      dispatch(fetchUserInfo());
     }
   }, []);
+
   return token ? (
     <MainPage></MainPage>
   ) : (

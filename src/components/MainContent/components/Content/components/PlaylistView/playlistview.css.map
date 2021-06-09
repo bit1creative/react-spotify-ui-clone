@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,IAAI,CAAJ,6BAAI;AAEJ,AAAA,SAAS,CAAC;EACR,MAAM,EAAE,IAAI;CACb",
-    "sources": [
-        "playlistview.scss"
-    ],
-    "names": [],
-    "file": "playlistview.css"
-}

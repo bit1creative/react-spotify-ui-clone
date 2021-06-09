@@ -1,4 +1,1 @@
-add redirect (privateroute) if no spotify token
-save token localeStorage/cookies
-
 work with header

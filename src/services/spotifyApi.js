@@ -76,6 +76,10 @@ export const addSongToSaved = async (id) => {
   return await spotifyClient.addToMySavedTracks([id]);
 };
 
+export const getUsersProfilePic = async (id) => {
+  return await spotifyClient.getUser(id);
+};
+
 // export const userAPI = async (token) =>
 //   await axios
 //     .get("https://api.spotify.com/v1/me", {

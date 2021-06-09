@@ -43,14 +43,14 @@
       color: azure;
       .number {
         display: none !important;
+        font-size: 1.1em;
       }
       .play-icon {
         @media screen and (min-width: constants.$sm) {
           display: flex !important;
         }
-        justify-content: center;
-        align-items: center;
-        font-size: 2em;
+        align-self: center;
+        justify-self: center;
       }
       .duration {
         .remove-from-liked-icon {
@@ -78,6 +78,7 @@
     }
     .play-icon {
       display: none !important;
+      font-size: 2em;
     }
     .song-name-wrapper {
       display: flex;

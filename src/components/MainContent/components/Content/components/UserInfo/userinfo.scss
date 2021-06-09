@@ -3,9 +3,15 @@
 .user-info {
   position: fixed;
   z-index: 1;
-  width: 100%;
+  // width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  right: 0;
+  left: 0;
   @media only screen and (min-width: constants.$sm) {
-    right: 0;
+    left: 20%;
+  }
+  @media only screen and (min-width: constants.$lg) {
+    left: 15%;
   }
   min-width: max-content;
   display: flex;
@@ -14,7 +20,7 @@
   align-items: flex-end;
   button {
     max-width: max-content;
-    margin: 10px 20px 0 0;
+    margin: 10px 20px 10px 0;
     border-radius: 99px;
     background-color: rgba(0, 0, 0, 0.95);
     border: none;
@@ -48,6 +54,8 @@
     background-color: rgb(36, 36, 36);
   }
   .user-menu {
+    position: absolute;
+    top: 40px;
     margin: 10px 20px 0 0;
     padding: 10px 0 13px 0;
     width: 50%;

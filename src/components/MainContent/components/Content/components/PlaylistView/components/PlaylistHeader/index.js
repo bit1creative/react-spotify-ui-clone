@@ -2,7 +2,7 @@ import "./playlistheader.scss";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { FaHeart } from "react-icons/fa";
 
-const PlaylistHeader = ({ user, playlist, isLikedSongs }) => {
+const PlaylistHeader = ({ user, playlist, isLikedSongs, picURL }) => {
   return (
     <div className="playlist-header">
       <SkeletonTheme
@@ -39,25 +39,38 @@ const PlaylistHeader = ({ user, playlist, isLikedSongs }) => {
               )}
             </span>
             <div className="playlist-user-info">
-              <img
-                src={user.imageLink}
-                alt="user"
-                className="playlist-user-info-sm"
-              />
-              <span className="playlist-user-info-sm">{user.username}</span>
-              <span>
-                {playlist || isLikedSongs ? (
-                  <>
-                    •{" "}
-                    {isLikedSongs
-                      ? user.likedSongs.length
-                      : playlist.tracks.total}{" "}
-                    songs
-                  </>
-                ) : (
-                  <Skeleton width={100} />
-                )}
-              </span>
+              {playlist || (isLikedSongs && user?.likedSongs) ? (
+                <>
+                  <img
+                    src={picURL || user.imageLink}
+                    alt="user"
+                    className="playlist-owner-info-sm"
+                  />
+                  <span className="playlist-user-info-sm">
+                    {playlist?.owner.display_name || user.username}
+                  </span>
+                </>
+              ) : (
+                <div className="playlist-user-info-sm">
+                  <Skeleton circle={true} width={"2em"} height={"2em"} />
+                  <Skeleton width={"10em"} height={"1.5em"} />
+                </div>
+              )}
+
+              {playlist || (isLikedSongs && user?.likedSongs) ? (
+                <span>
+                  •{" "}
+                  {isLikedSongs
+                    ? user.likedSongs.length
+                    : playlist.tracks.total}{" "}
+                  songs
+                </span>
+              ) : (
+                <Skeleton
+                  width={100}
+                  className="playlist-user-info-sm skeleton-songs-count"
+                />
+              )}
             </div>
           </div>
         </div>

@@ -14,10 +14,15 @@ const PlaylistView = () => {
   const isLikedSongs = id === "liked";
   const dispatch = useDispatch();
   const playlist = useSelector((state) => state.playlist.playlist);
+  const playlistOwnerPicURL = useSelector(
+    (state) => state.playlist.ownerImageLink
+  );
 
   useEffect(() => {
     if (isLikedSongs) return;
-    dispatch(fetchPlaylist(id));
+    setTimeout(() => {
+      dispatch(fetchPlaylist(id));
+    }, 10);
   }, [id]);
 
   return (
@@ -25,6 +30,7 @@ const PlaylistView = () => {
       <PlaylistHeader
         user={user}
         playlist={playlist}
+        picURL={playlistOwnerPicURL}
         isLikedSongs={isLikedSongs}
       ></PlaylistHeader>
       <SongsView
