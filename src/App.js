@@ -9,6 +9,7 @@ import MainPage from "pages/MainPage";
 
 import { setToken } from "store/slices/tokenSlice";
 import { fetchUserInfo } from "store/slices/userInfoSlice";
+import { fetchHomePagePlaylists } from "store/slices/playlistsSlice";
 
 function App() {
   const token = useSelector((state) => state.token.value);
@@ -23,11 +24,13 @@ function App() {
       dispatch(setToken(_token));
       initializeSpotifyClient(_token);
       dispatch(fetchUserInfo());
+      dispatch(fetchHomePagePlaylists());
     }
 
     if (token) {
       initializeSpotifyClient(token);
       dispatch(fetchUserInfo());
+      dispatch(fetchHomePagePlaylists());
     }
   }, []);
 

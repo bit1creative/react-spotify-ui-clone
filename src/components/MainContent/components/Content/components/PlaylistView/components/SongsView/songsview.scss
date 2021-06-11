@@ -95,19 +95,28 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        justify-content: center;
         text-align: left;
-        padding-left: 0.5em;
+        padding-left: 1em;
         span {
-          font-size: 0.9em;
+          font-size: 1em;
+          @media only screen and (min-width: constants.$lg) {
+            font-size: 1.1em;
+          }
           font-weight: 500;
           font-family: constants.$spotify-font;
           &:nth-of-type(1) {
             color: azure;
             font-size: 1.1em;
+            @media only screen and (min-width: constants.$lg) {
+              font-size: 1.2em;
+            }
+            padding-bottom: 0.2em;
           }
           &:nth-of-type(2) {
             display: flex;
             align-items: center;
+            font-weight: 600;
           }
         }
         .explicit-icon {
@@ -116,8 +125,17 @@
         }
       }
     }
+    .album {
+      font-size: 1em;
+      @media only screen and (min-width: constants.$lg) {
+        font-size: 1.1em;
+      }
+    }
     .time-added {
       font-size: 1em;
+      @media only screen and (min-width: constants.$lg) {
+        font-size: 1.1em;
+      }
     }
     .flex-align-center {
       display: flex;
@@ -126,6 +144,10 @@
     }
     .duration {
       padding-right: 2em;
+      font-size: 1em;
+      @media only screen and (min-width: constants.$lg) {
+        font-size: 1.1em;
+      }
       span:nth-of-type(1) {
         display: flex;
         align-items: center;

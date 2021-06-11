@@ -50,21 +50,34 @@ const Song = ({ song, index, isSaved }) => {
         </div>
         <BiPlay className="play-icon sm-flex" />
         <div className="song-name-wrapper">
-          <img src={song.track.album.images[2].url} alt="" />
+          {song?.track ? (
+            <img src={song.track.album.images[0].url} alt="" />
+          ) : null}
+
           <div className="song-name">
-            <span>{song.track.name}</span>
+            <span>{song?.track?.name || song?.name}</span>
             <span>
-              {song.track.explicit ? (
+              {song?.track?.explicit || song.explicit ? (
                 <MdExplicit className="explicit-icon" />
               ) : null}
-              {song.track.artists
-                .reduce((artists, artist) => artists + artist.name + ", ", "")
-                .slice(0, -2)}
+              {song?.track
+                ? song.track.artists
+                    .reduce(
+                      (artists, artist) => artists + artist.name + ", ",
+                      ""
+                    )
+                    .slice(0, -2)
+                : song.artists
+                    .reduce(
+                      (artists, artist) => artists + artist.name + ", ",
+                      ""
+                    )
+                    .slice(0, -2)}
             </span>
           </div>
         </div>
-        <span className="flex-align-center sm-flex">
-          {song.track.album.name}
+        <span className="flex-align-center album sm-flex">
+          {song?.track?.album?.name || null}
         </span>
         <span className="flex-align-center time-added sm-flex">
           {calcDate(moment(song.added_at))}
@@ -73,19 +86,23 @@ const Song = ({ song, index, isSaved }) => {
           {songIsSaved ? (
             <span className="heart-icon add-to-liked-icon">
               <FaHeart
-                song-id={song.track.id}
+                song-id={song?.track?.id || song.id}
                 onClick={(e) => handleHeartClick(e)}
               />
             </span>
           ) : (
             <span className="heart-icon remove-from-liked-icon">
               <FaRegHeart
-                song-id={song.track.id}
+                song-id={song?.track?.id || song.id}
                 onClick={(e) => handleHeartClick(e)}
               />
             </span>
           )}
-          <span>{moment(song.track.duration_ms).format("m:ss")}</span>
+          <span>
+            {moment(song?.track?.duration_ms || song.duration_ms).format(
+              "m:ss"
+            )}
+          </span>
         </div>
       </div>
     </button>
@@ -94,15 +111,16 @@ const Song = ({ song, index, isSaved }) => {
 
 const SongsView = ({ songs, isLikedSongs }) => {
   const songsAreSaved = useSelector((state) => state.playlist.songsAreSaved);
-
-  const songsList = songs?.map((song, index) => (
-    <Song
-      key={song.track.id}
-      song={song}
-      index={index}
-      isSaved={isLikedSongs || songsAreSaved[index]}
-    />
-  ));
+  const songsList = songs
+    ?.filter((song) => song.track?.id || song?.id)
+    ?.map((song, index) => (
+      <Song
+        key={song?.track?.id || song.id}
+        song={song}
+        index={index}
+        isSaved={isLikedSongs || songsAreSaved[index]}
+      />
+    ));
 
   return (
     <div className="songs">

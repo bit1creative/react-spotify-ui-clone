@@ -41,13 +41,18 @@ const PlaylistHeader = ({ user, playlist, isLikedSongs, picURL }) => {
             <div className="playlist-user-info">
               {playlist || (isLikedSongs && user?.likedSongs) ? (
                 <>
-                  <img
-                    src={picURL || user.imageLink}
-                    alt="user"
-                    className="playlist-owner-info-sm"
-                  />
+                  {picURL ? (
+                    <img
+                      src={isLikedSongs ? user.imageLink : picURL}
+                      alt="user"
+                      className="playlist-owner-info-sm"
+                    />
+                  ) : null}
+
                   <span className="playlist-user-info-sm">
-                    {playlist?.owner.display_name || user.username}
+                    {isLikedSongs
+                      ? user.username
+                      : playlist?.owner?.display_name}
                   </span>
                 </>
               ) : (

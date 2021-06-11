@@ -24,9 +24,9 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="menu">
-        {/* <BsThreeDots className="three-dots" />
-         */}
-        <img src={logo} alt="spotify-white-logo" className="white-logo" />
+        <Link to="/" className="secondary-btn">
+          <img src={logo} alt="spotify-white-logo" className="white-logo" />
+        </Link>
         <Link to="/">
           <button className="menu-btn">
             <FiHome className="icon" />

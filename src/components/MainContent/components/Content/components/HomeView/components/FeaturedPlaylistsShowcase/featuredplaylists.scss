@@ -1,0 +1,87 @@
+@use "../../../../../../../../constants";
+
+.featured-playlists {
+  padding-top: 0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 7% 5%;
+  @media screen and (min-width: constants.$sm) {
+    gap: 5% 2%;
+  }
+  @media screen and (min-width: constants.$lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  a {
+    overflow: hidden;
+    text-decoration: none;
+    border-radius: 5px;
+    height: max-content;
+    .header-playlist-card {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 5px;
+      background-color: rgba(170, 170, 170, 0.15);
+      transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+      -webkit-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+      -moz-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+      .header-playlist-logo {
+        width: 5.5em;
+        aspect-ratio: 1/1;
+        @media screen and (min-width: constants.$sm) {
+          width: 6.5em;
+        }
+        @media screen and (min-width: constants.$md) {
+          width: 7em;
+        }
+        border-radius: 5px 0 0 5px;
+        box-shadow: 3px -1px 15px 1px rgba(0, 0, 0, 0.32);
+        -webkit-box-shadow: 3px -1px 15px 1px rgba(0, 0, 0, 0.32);
+        -moz-box-shadow: 3px -1px 15px 1px rgba(0, 0, 0, 0.32);
+      }
+      .header-playlist-card-name {
+        color: azure;
+        padding: 0 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-family: constants.$spotify-font;
+        font-weight: 600;
+        font-size: 1.2em;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(170, 170, 170, 0.35);
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+    }
+  }
+}
+.featured-playlist-skeleton-wrapper {
+  padding-top: 0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 7% 5%;
+  @media screen and (min-width: constants.$sm) {
+    gap: 5% 2%;
+  }
+  @media screen and (min-width: constants.$lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .featured-playlist-skeleton {
+    height: 4.5em;
+    @media screen and (min-width: constants.$md) {
+      height: 5.5em;
+    }
+  }
+}

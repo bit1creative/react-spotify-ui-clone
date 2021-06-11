@@ -3,33 +3,52 @@ import {
   getPlaylist,
   checkIfSongsSaved,
   getUsersProfilePic,
+  getAlbum,
 } from "services/spotifyApi";
 
 export const fetchPlaylist = createAsyncThunk(
-  "user/fetchPlaylist",
-  async (id) => {
-    const playlist = await getPlaylist(id);
-    const songsAreSaved = await checkForSavedTracksInPlaylist(
-      playlist.tracks.items
-    );
-    const ownerImageLink = await getUsersProfilePic(playlist.owner.id);
-    return {
-      playlist,
-      songsAreSaved,
-      ownerImageLink: ownerImageLink.images[0].url,
-    };
+  "playlist/fetchPlaylist",
+  async ({ id, isPlaylist }) => {
+    try {
+      const playlist = isPlaylist ? await getPlaylist(id) : await getAlbum(id);
+      const songsAreSaved = await checkForSavedTracksInPlaylist(
+        playlist.tracks.items,
+        isPlaylist
+      );
+      const ownerImageLink = isPlaylist
+        ? await getUsersProfilePic(playlist.owner.id)
+        : null;
+      return {
+        playlist,
+        songsAreSaved,
+        ownerImageLink: ownerImageLink?.images[0]?.url,
+      };
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 
-const checkForSavedTracksInPlaylist = async (songs) => {
+const checkForSavedTracksInPlaylist = async (songs, isPlaylist) => {
   let savedBoolArray = [];
-  for (let i = 0; i < Math.ceil(songs.length / 50); i++) {
-    savedBoolArray = [
-      ...savedBoolArray,
-      ...(await checkIfSongsSaved(
-        songs.slice(i * 50, i * 50 + 50).map((song) => song.track.id)
-      )),
-    ];
+  if (isPlaylist) {
+    for (let i = 0; i < Math.ceil(songs.length / 50); i++) {
+      savedBoolArray = [
+        ...savedBoolArray,
+        ...(await checkIfSongsSaved(
+          songs.slice(i * 50, i * 50 + 50).map((song) => song?.track?.id)
+        )),
+      ];
+    }
+  } else {
+    for (let i = 0; i < Math.ceil(songs.length / 50); i++) {
+      savedBoolArray = [
+        ...savedBoolArray,
+        ...(await checkIfSongsSaved(
+          songs.slice(i * 50, i * 50 + 50).map((song) => song.id)
+        )),
+      ];
+    }
   }
   return savedBoolArray;
 };
@@ -40,6 +59,16 @@ export const tempPlaylistSlice = createSlice({
     playlist: null,
     ownerImageLink: null,
     songsAreSaved: null,
+  },
+  reducers: {
+    resetPlaylistState: (state, action) => {
+      return {
+        ...state,
+        playlist: null,
+        ownerImageLink: null,
+        songsAreSaved: null,
+      };
+    },
   },
   extraReducers: {
     [fetchPlaylist.fulfilled]: (state, action) => {
@@ -52,5 +81,7 @@ export const tempPlaylistSlice = createSlice({
     },
   },
 });
+
+export const { resetPlaylistState } = tempPlaylistSlice.actions;
 
 export default tempPlaylistSlice.reducer;

@@ -7,7 +7,7 @@ const cookies = new Cookies();
 export const tokenSlice = createSlice({
   name: "token",
   initialState: {
-    value: cookies.get("spotifyClientID").id || null,
+    value: cookies.get("spotifyClientID")?.id || null,
   },
   reducers: {
     setToken: (state, action) => {

@@ -1,0 +1,48 @@
+@use '../../../../../../constants';
+
+.home-view-wrapper {
+  user-select: none;
+  height: 100%;
+  background: rgb(53, 29, 111);
+  background: linear-gradient(
+    180deg,
+    rgba(53, 29, 111, 1) 0%,
+    rgba(80, 55, 143, 0.5441526952577906) 18%,
+    rgba(80, 55, 143, 0) 29%
+  );
+  .home-view {
+    height: 100%;
+    padding: 3em 1em;
+    @media screen and (min-width: constants.$sm) {
+      padding: 5em 2em;
+    }
+    @media screen and (min-width: constants.$lg) {
+      padding: 0 2em;
+    }
+    .home-view-header {
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      @media screen and (min-width: constants.$sm) {
+        padding-top: 0;
+        justify-content: flex-end;
+      }
+      .title {
+        color: azure;
+        font-weight: bold;
+        font-size: 1.5em;
+        @media screen and (min-width: constants.$sm) {
+          font-size: 1.8em;
+        }
+        @media screen and (min-width: constants.$md) {
+          font-size: 1.9em;
+        }
+        @media screen and (min-width: constants.$lg) {
+          font-size: 2em;
+        }
+        font-family: constants.$spotify-font;
+        padding-bottom: 0.5em;
+      }
+    }
+  }
+}

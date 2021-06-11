@@ -1,0 +1,108 @@
+@use "../../../../../../../../constants";
+
+.section-view {
+  padding-top: 0em;
+  @media screen and (min-width: constants.$sm) {
+    padding-top: 3em;
+  }
+  .title {
+    color: azure;
+    font-weight: bold;
+    font-size: 1.5em;
+    @media screen and (min-width: constants.$sm) {
+      font-size: 1.8em;
+    }
+    @media screen and (min-width: constants.$md) {
+      font-size: 1.9em;
+    }
+    @media screen and (min-width: constants.$lg) {
+      font-size: 2em;
+    }
+    font-family: constants.$spotify-font;
+    padding-bottom: 0.5em;
+  }
+  .horizontal-scroll {
+    overflow-x: scroll;
+    @media screen and (min-width: constants.$sm) {
+      overflow-x: visible;
+    }
+    .section-view-cards {
+      width: max-content;
+      padding-top: 0.5em;
+      white-space: nowrap;
+      @media screen and (min-width: constants.$sm) {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 0 0 0;
+        row-gap: 2%;
+        column-gap: 2%;
+        justify-content: space-around;
+        justify-items: center;
+      }
+      @media screen and (min-width: constants.$md) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 0 0 0;
+      }
+      @media screen and (min-width: constants.$lg) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+      @media screen and (min-width: constants.$xl) {
+        column-gap: 3%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
+      -webkit-overflow-scrolling: touch;
+      a {
+        width: 100%;
+        overflow: hidden;
+        text-decoration: none;
+        border-radius: 5px;
+        padding-right: 1em;
+        &:last-of-type {
+          padding-right: 0;
+        }
+        .section-card {
+          border: 0;
+          padding: 0;
+          border-radius: 5px;
+          background-color: transparent;
+          @media screen and (min-width: constants.$sm) {
+            width: 100%;
+            background-color: rgba(170, 170, 170, 0.05);
+          }
+          transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+          box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+          -webkit-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+          -moz-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+          .section-card-image {
+            padding: 0;
+            width: 14em;
+            @media screen and (min-width: constants.$sm) {
+              width: 90%;
+              padding-top: 1em;
+            }
+          }
+          .section-info {
+            color: azure;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-family: constants.$spotify-font;
+            font-weight: 600;
+            font-size: 1.1em;
+            padding-bottom: 1em;
+            width: 12em;
+          }
+          &:hover {
+            cursor: pointer;
+            @media screen and (min-width: constants.$sm) {
+              background-color: rgba(170, 170, 170, 0.2);
+              transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+            }
+          }
+        }
+      }
+    }
+  }
+}
