@@ -1,0 +1,14 @@
+@use '../../../../../../constants';
+
+.create-playlist-view {
+  user-select: none;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  span {
+    color: azure;
+    font-family: constants.$spotify-font;
+    font-weight: 600;
+    font-size: 1.4em;
+  }
+}

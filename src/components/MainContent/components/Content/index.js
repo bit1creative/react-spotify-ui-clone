@@ -2,6 +2,8 @@ import { Route, Switch } from "react-router-dom";
 import UserInfo from "./components/UserInfo";
 import PlaylistView from "./components/PlaylistView";
 import HomeView from "./components/HomeView";
+import LibraryView from "./components/LibraryView";
+import CreatePlaylistsView from "./components/CreatePlaylistView";
 import "./content.scss";
 
 const Content = () => {
@@ -13,6 +15,12 @@ const Content = () => {
           <HomeView />
         </Route>
         <Route path="/(playlist|album)/:id" children={<PlaylistView />}></Route>
+        <Route exact path="/library">
+          <LibraryView />
+        </Route>
+        <Route exact path="/create-playlist">
+          <CreatePlaylistsView />
+        </Route>
       </Switch>
     </div>
   );

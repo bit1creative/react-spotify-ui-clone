@@ -1,0 +1,175 @@
+@use "../../../../../../../../constants";
+
+.library-playlists {
+  padding: 4em 2em 2em 2em;
+  .library-playlists-span {
+    color: azure;
+    font-weight: bold;
+    font-size: 1.2em;
+    @media screen and (min-width: constants.$sm) {
+      font-size: 1.5em;
+    }
+    @media screen and (min-width: constants.$md) {
+      font-size: 1.6em;
+    }
+    @media screen and (min-width: constants.$lg) {
+      font-size: 1.7em;
+    }
+    font-family: constants.$spotify-font;
+  }
+  .horizontal-scroll {
+    padding-top: 1em;
+    overflow-x: scroll;
+    @media screen and (min-width: constants.$sm) {
+      overflow-x: visible;
+    }
+    .library-playlists-section {
+      display: flex;
+      width: max-content;
+      white-space: nowrap;
+      @media screen and (min-width: constants.$sm) {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 2%;
+        row-gap: 1%;
+      }
+      @media screen and (min-width: constants.$md) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+      @media screen and (min-width: constants.$lg) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
+      a:nth-of-type(1) {
+        grid-column-start: span 2;
+        text-decoration: none;
+        overflow: hidden;
+        .liked-songs-card {
+          height: 100%;
+          width: 200px;
+          @media screen and (min-width: constants.$sm) {
+            width: 100%;
+          }
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          border: none;
+          padding: 1em;
+          border-radius: 5px;
+          background: rgb(45, 99, 255);
+          background: linear-gradient(
+            144deg,
+            rgba(45, 99, 255, 1) 0%,
+            rgba(149, 174, 255, 1) 100%
+          );
+          &:hover {
+            cursor: pointer;
+          }
+          .liked-songs-card-songs {
+            color: azure;
+            padding-top: 4em;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 100%;
+            .artist {
+              font-family: constants.$spotify-font;
+              color: azure;
+            }
+            .song {
+              font-family: constants.$spotify-font;
+              color: rgba(255, 255, 255, 0.8);
+            }
+          }
+          .liked-songs-card-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            color: azure;
+            span:nth-of-type(1) {
+              font-weight: 600;
+              font-size: 1.5em;
+              @media screen and (min-width: constants.$sm) {
+                font-size: 1.8em;
+              }
+              @media screen and (min-width: constants.$md) {
+                font-size: 1.9em;
+              }
+              @media screen and (min-width: constants.$lg) {
+                font-size: 2em;
+              }
+            }
+            span:nth-of-type(2) {
+              font-size: 0.8em;
+              @media screen and (min-width: constants.$sm) {
+                font-size: 0.9em;
+              }
+              @media screen and (min-width: constants.$md) {
+                font-size: 1em;
+              }
+              @media screen and (min-width: constants.$lg) {
+                font-size: 1.1em;
+              }
+            }
+          }
+        }
+      }
+    }
+    a {
+      .playlist-card {
+        border: 0;
+        padding: 0;
+        border-radius: 5px;
+        background-color: transparent;
+        @media screen and (min-width: constants.$sm) {
+          width: 100%;
+          background-color: rgba(170, 170, 170, 0.05);
+        }
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+        box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+        -webkit-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+        -moz-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+        .playlist-card-image {
+          width: 150px;
+          aspect-ratio: 1/1;
+          border-radius: 5px;
+          @media screen and (min-width: constants.$sm) {
+            width: 150px;
+            padding: 1em;
+          }
+          @media screen and (min-width: constants.$md) {
+            width: 170px;
+          }
+          @media screen and (min-width: constants.$lg) {
+            width: 200px;
+          }
+        }
+        .playlist-info {
+          color: azure;
+          text-align: center;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          font-family: constants.$spotify-font;
+          font-weight: 600;
+          font-size: 1.1em;
+          width: 12em;
+          padding: 0.5em 1em 0 1em;
+          @media screen and (min-width: constants.$sm) {
+            width: 150px;
+            padding: 0 1em 1em 1em;
+          }
+        }
+        &:hover {
+          cursor: pointer;
+          @media screen and (min-width: constants.$sm) {
+            background-color: rgba(170, 170, 170, 0.2);
+            transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+          }
+        }
+      }
+    }
+  }
+}

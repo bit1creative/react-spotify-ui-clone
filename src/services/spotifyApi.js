@@ -1,9 +1,12 @@
 import { DISCOVER_WEEKLY } from "./playlistIds.json";
-// import axios from "axios";
+import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-js";
 const spotifyClient = new SpotifyWebApi();
 
+const _token = { value: null };
+
 export const initializeSpotifyClient = (token) => {
+  _token.value = token;
   spotifyClient.setAccessToken(token);
 };
 
@@ -95,6 +98,21 @@ export const getUsersPlaylists = async (offset = 0, playlists = []) => {
     });
 };
 
+export const getUsersAlbums = async (offset = 0, albums = []) => {
+  await axios
+    .get("https://api.spotify.com/v1/me/albums", {
+      headers: { Authorization: "Bearer " + _token, limit: 50, offset },
+    })
+    .then((res) => {
+      const mergedAlbums = [...albums, ...res.items];
+      if (res.next) {
+        offset += 50;
+        return getUsersAlbums(offset, mergedAlbums);
+      }
+      return mergedAlbums;
+    });
+};
+
 export const removeSongFromSaved = async (id) => {
   return await spotifyClient.removeFromMySavedTracks([id]);
 };
@@ -115,6 +133,10 @@ export const getNewReleases = async () => {
   return await spotifyClient.getNewReleases({ limit: 10 });
 };
 
+export const getCategoryPlaylists = async (category) => {
+  return await spotifyClient.getCategoryPlaylists(category, { limit: 10 });
+};
+
 export const getDiscoverWeekly = async () => {
   return await spotifyClient.getPlaylist(DISCOVER_WEEKLY);
 };
@@ -122,10 +144,3 @@ export const getDiscoverWeekly = async () => {
 export const getRecommendations = async (ids) => {
   return await spotifyClient.getRecommendations({ seed_tracks: ids, limit: 9 });
 };
-
-// export const userAPI = async (token) =>
-//   await axios
-//     .get("https://api.spotify.com/v1/me", {
-//       headers: { Authorization: "Bearer " + token },
-//     })
-//     .then((response) => response.data);

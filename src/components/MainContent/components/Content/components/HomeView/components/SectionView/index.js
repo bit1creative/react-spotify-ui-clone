@@ -23,7 +23,9 @@ const SectionCard = ({ el }) => {
 
 const SectionView = ({ name, selector }) => {
   const items = useSelector(
-    (state) => state.playlists?.[selector]?.albums.items
+    (state) =>
+      state.playlists?.[selector]?.albums?.items ||
+      state.playlists?.[selector]?.playlists?.items
   );
   return (
     <div className="section-view">

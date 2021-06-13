@@ -11,7 +11,12 @@ const HomeView = () => {
           <FeaturedPlaylists />
         </div>
         <SectionView name={"New Releases"} selector={"newReleases"} />
-        {/* <SectionView name={"Made for you"} selector={"discoverWeekly"} /> */}
+        <SectionView name={"Top Lists"} selector={"toplistsPlaylists"} />
+        <SectionView name={"Mood"} selector={"moodPlaylists"} />
+        <SectionView name={"Workout"} selector={"workoutPlaylists"} />
+        <SectionView name={"Chill"} selector={"chillPlaylists"} />
+        <SectionView name={"Hip Hop"} selector={"hiphopPlaylists"} />
+        <SectionView name={"Pop"} selector={"popPlaylists"} />
       </div>
     </div>
   );

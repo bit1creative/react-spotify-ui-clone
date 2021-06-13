@@ -39,17 +39,19 @@ const Sidebar = () => {
             <span>Search</span>
           </button>
         </Link>
-        <Link to="/playlist/liked">
+        <Link to="/library">
           <button className="menu-btn">
             <ImBooks className="icon" />
             <span>Your Library</span>
           </button>
         </Link>
         <div className="gap"></div>
-        <button className="secondary-btn">
-          <AiFillPlusSquare className="icon" />
-          <span>Create Playlist</span>
-        </button>
+        <Link to="/create-playlist" className="secondary-btn">
+          <button className="secondary-btn">
+            <AiFillPlusSquare className="icon" />
+            <span>Create Playlist</span>
+          </button>
+        </Link>
         <Link to="/playlist/liked" className="secondary-btn">
           <button>
             <AiOutlineHeart className="icon" />

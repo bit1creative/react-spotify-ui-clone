@@ -1,5 +1,4 @@
 import "./songsview.scss";
-import { useEffect } from "react";
 import { fetchUsersSavedTracks } from "store/slices/userInfoSlice";
 import { removeSongFromSaved, addSongToSaved } from "services/spotifyApi";
 import { useSelector, useDispatch } from "react-redux";

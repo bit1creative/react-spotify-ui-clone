@@ -1,0 +1,20 @@
+@use '../../../../../../../../constants';
+
+.library-artists {
+  padding: 0 2em;
+  .library-artists-span {
+    color: azure;
+    font-weight: bold;
+    font-size: 1.2em;
+    @media screen and (min-width: constants.$sm) {
+      font-size: 1.5em;
+    }
+    @media screen and (min-width: constants.$md) {
+      font-size: 1.6em;
+    }
+    @media screen and (min-width: constants.$lg) {
+      font-size: 1.7em;
+    }
+    font-family: constants.$spotify-font;
+  }
+}

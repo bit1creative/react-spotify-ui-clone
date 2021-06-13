@@ -3,6 +3,7 @@ import {
   getUserInfo,
   getUsersSavedTracks,
   getUsersPlaylists,
+  // getUsersAlbums,
 } from "services/spotifyApi";
 
 export const fetchUserInfo = createAsyncThunk(
@@ -13,10 +14,12 @@ export const fetchUserInfo = createAsyncThunk(
       const userData = await getUserInfo();
       const userSavedTracks = await getUsersSavedTracks();
       const userPlayLists = await getUsersPlaylists();
+      // const userAlbums = await getUsersAlbums();
       return {
         ...userData,
         likedSongs: userSavedTracks,
         playlists: userPlayLists,
+        // albums: userAlbums,
       };
     } catch (error) {
       console.log(error);
@@ -32,14 +35,6 @@ export const fetchUsersSavedTracks = createAsyncThunk(
   }
 );
 
-// export const fetchUsersPlaylists = createAsyncThunk(
-//   "user/fetchUsersPlaylists",
-//   async () => {
-//     const data = await getUsersPlaylists();
-//     return data;
-//   }
-// );
-
 export const userInfoSlice = createSlice({
   name: "user",
   initialState: {
@@ -48,6 +43,7 @@ export const userInfoSlice = createSlice({
     imageLink: null,
     likedSongs: null,
     playlists: null,
+    // albums: null,
   },
   extraReducers: {
     [fetchUserInfo.fulfilled]: (state, action) => {
@@ -58,6 +54,7 @@ export const userInfoSlice = createSlice({
         imageLink: action.payload.images[0].url,
         likedSongs: action.payload.likedSongs,
         playlists: action.payload.playlists,
+        // albums: action.payload.albums,
       };
     },
     [fetchUsersSavedTracks.fulfilled]: (state, action) => {
@@ -66,12 +63,6 @@ export const userInfoSlice = createSlice({
         likedSongs: action.payload,
       };
     },
-    // [fetchUsersPlaylists.fulfilled]: (state, action) => {
-    //   return {
-    //     ...state,
-    //     playlists: action.payload,
-    //   };
-    // },
   },
 });
 

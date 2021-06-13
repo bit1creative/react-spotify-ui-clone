@@ -10,7 +10,6 @@ import "./userinfo.scss";
 const UserInfo = () => {
   const user = useSelector((state) => state.user);
   const [clicked, setClicked] = useState(false);
-  const [bgStyle, setBgStyle] = useState("");
   const dispatch = useDispatch();
 
   function btnClicked(notFocused = false, e) {
@@ -24,7 +23,7 @@ const UserInfo = () => {
   }
 
   return (
-    <div className={`user-info ${bgStyle}`}>
+    <div className={`user-info`}>
       <button onBlur={(e) => btnClicked(true, e)} onClick={() => btnClicked()}>
         <img src={user.imageLink || userImage} alt="user profile" />
         <span>{user.username || "unauthorized"}</span>
