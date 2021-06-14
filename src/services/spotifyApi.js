@@ -144,3 +144,18 @@ export const getDiscoverWeekly = async () => {
 export const getRecommendations = async (ids) => {
   return await spotifyClient.getRecommendations({ seed_tracks: ids, limit: 9 });
 };
+
+export const Search = async (qry) => {
+  const searchAlbums = await spotifyClient.searchAlbums(qry, { limit: 10 });
+  const searchTracks = await spotifyClient.searchTracks(qry, { limit: 10 });
+  const searchPlaylists = await spotifyClient.searchPlaylists(qry, {
+    limit: 10,
+  });
+  const searchArtists = await spotifyClient.searchArtists(qry, { limit: 10 });
+  return {
+    ...searchAlbums,
+    ...searchArtists,
+    ...searchPlaylists,
+    ...searchTracks,
+  };
+};

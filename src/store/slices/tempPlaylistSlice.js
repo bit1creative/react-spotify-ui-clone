@@ -29,7 +29,7 @@ export const fetchPlaylist = createAsyncThunk(
   }
 );
 
-const checkForSavedTracksInPlaylist = async (songs, isPlaylist) => {
+export const checkForSavedTracksInPlaylist = async (songs, isPlaylist) => {
   let savedBoolArray = [];
   if (isPlaylist) {
     for (let i = 0; i < Math.ceil(songs.length / 50); i++) {

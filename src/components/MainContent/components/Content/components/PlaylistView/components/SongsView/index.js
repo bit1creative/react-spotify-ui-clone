@@ -10,7 +10,7 @@ import { BiPlay } from "react-icons/bi";
 import { MdExplicit } from "react-icons/md";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
-const Song = ({ song, index, isSaved }) => {
+export const Song = ({ song, index, isSaved, isSearch = false }) => {
   const [songIsSaved, setSongIsSaved] = useState(isSaved);
   const dispatch = useDispatch();
   function calcDate(date) {
@@ -49,8 +49,13 @@ const Song = ({ song, index, isSaved }) => {
         </div>
         <BiPlay className="play-icon sm-flex" />
         <div className="song-name-wrapper">
-          {song?.track ? (
-            <img src={song.track.album.images[0].url} alt="" />
+          {isSaved || isSearch ? (
+            <img
+              src={
+                song?.track?.album?.images[0]?.url || song.album.images[0].url
+              }
+              alt=""
+            />
           ) : null}
 
           <div className="song-name">
@@ -78,10 +83,16 @@ const Song = ({ song, index, isSaved }) => {
         <span className="flex-align-center album sm-flex">
           {song?.track?.album?.name || null}
         </span>
-        <span className="flex-align-center time-added sm-flex">
-          {calcDate(moment(song.added_at))}
-        </span>
-        <div className="flex-align-center duration">
+        {isSearch ? null : (
+          <span className="flex-align-center time-added sm-flex">
+            {calcDate(moment(song.added_at))}
+          </span>
+        )}
+        <div
+          className={`${
+            isSearch ? "flex-align-end" : "flex-align-center"
+          } duration`}
+        >
           {songIsSaved ? (
             <span className="heart-icon add-to-liked-icon">
               <FaHeart

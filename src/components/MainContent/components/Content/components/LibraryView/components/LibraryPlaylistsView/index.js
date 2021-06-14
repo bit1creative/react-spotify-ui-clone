@@ -9,10 +9,10 @@ const LikedSongsCard = ({ songs }) => {
       <button className="liked-songs-card">
         <div className="liked-songs-card-songs">
           {songs.slice(0, 10).map((song) => (
-            <>
-              <span className="artist"> {song.artists[0].name} </span>
-              <span className="song">{song.name} •</span>
-            </>
+            <span key={song.name} className="artist">
+              {" "}
+              {song.artists[0].name} <span className="song">{song.name} •</span>
+            </span>
           ))}
         </div>
         <div className="liked-songs-card-info">
@@ -35,7 +35,7 @@ const PlaylistCard = ({ playlist }) => {
         />
         <div className="playlist-info">
           <span>{playlist.name}</span>
-          <span>
+          <span className="description">
             {playlist.description === ""
               ? `By ${playlist.owner.display_name}`
               : playlist.description}

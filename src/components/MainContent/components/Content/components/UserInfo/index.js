@@ -22,7 +22,7 @@ const UserInfo = () => {
     setClicked(!clicked);
   }
 
-  return (
+  return user ? (
     <div className={`user-info`}>
       <button onBlur={(e) => btnClicked(true, e)} onClick={() => btnClicked()}>
         <img src={user.imageLink || userImage} alt="user profile" />
@@ -51,7 +51,7 @@ const UserInfo = () => {
         </a>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default UserInfo;

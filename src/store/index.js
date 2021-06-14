@@ -3,6 +3,7 @@ import tokenSlice from "./slices/tokenSlice";
 import userInfoSlice from "./slices/userInfoSlice";
 import tempPlaylistSlice from "./slices/tempPlaylistSlice";
 import playlistsSlice from "./slices/playlistsSlice";
+import searchResultSlice from "./slices/searchResultSlice";
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     user: userInfoSlice,
     playlist: tempPlaylistSlice,
     playlists: playlistsSlice,
+    search: searchResultSlice,
   },
 });

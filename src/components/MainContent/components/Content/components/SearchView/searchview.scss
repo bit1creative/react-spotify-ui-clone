@@ -1,0 +1,197 @@
+@use '../../../../../../constants';
+
+.search-view {
+  user-select: none;
+  width: 100%;
+  padding-bottom: 2em;
+  .search-tab {
+    z-index: 2;
+    padding-top: 4em;
+    width: 60%;
+    padding-left: 2em;
+    @media only screen and (min-width: constants.$sm) {
+      position: absolute;
+      padding-top: 13px;
+      width: max-content;
+      padding-left: 4em;
+    }
+    .search-icon {
+      display: none;
+      @media only screen and (min-width: constants.$sm) {
+        display: block;
+        position: absolute;
+      }
+      margin: 0.4em;
+      color: rgba($color: #000000, $alpha: 0.8);
+      font-size: 1.4em;
+    }
+    .input {
+      width: 100%;
+      border-radius: 99px;
+      padding: 1em 2em 1em 4em;
+      font-size: 0.8em;
+      font-family: constants.$spotify-font;
+      font-weight: 600;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .songs {
+    padding-top: 3em;
+    @media only screen and (min-width: constants.$sm) {
+      padding-top: 5em;
+    }
+  }
+  .playlists {
+    padding: 0 0.5em 0 0.5em;
+    @media screen and (min-width: constants.$md) {
+      padding: 0 3em 1em 3em;
+    }
+  }
+  .albums {
+    padding: 0 0.5em 0 0.5em;
+    @media screen and (min-width: constants.$md) {
+      padding: 0 3em 1em 3em;
+    }
+  }
+
+  .artists {
+    padding: 0 0.5em 0 0.5em;
+    @media screen and (min-width: constants.$md) {
+      padding: 3em 3em 1em 3em;
+    }
+    .horizontal-scroll {
+      width: max-content;
+      padding-top: 0.5em;
+      white-space: nowrap;
+      overflow-x: scroll;
+      width: 100%;
+      @media screen and (min-width: constants.$sm) {
+        overflow-x: visible;
+        display: grid;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        row-gap: 2%;
+        column-gap: 2%;
+        justify-content: space-around;
+        justify-items: center;
+      }
+      @media screen and (min-width: constants.$md) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+      }
+      @media screen and (min-width: constants.$lg) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+      @media screen and (min-width: constants.$xl) {
+        column-gap: 3%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
+      .artist {
+        background-color: transparent;
+        @media screen and (min-width: constants.$sm) {
+          background-color: rgba(170, 170, 170, 0.05);
+        }
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+        box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+        -webkit-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+        -moz-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
+        padding: 0;
+        border: 0;
+        border-radius: 5px;
+        width: 15em;
+        aspect-ratio: 1/1;
+        img {
+          margin: 1em;
+          border-radius: 999px;
+          width: 80%;
+          aspect-ratio: 1/1;
+          -webkit-box-shadow: 0px 7px 12px 2px rgba(0, 0, 0, 0.33);
+          box-shadow: 0px 7px 12px 2px rgba(0, 0, 0, 0.33);
+        }
+        .artist-info {
+          margin: 0 2em 2em 1em;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          color: azure;
+          font-family: constants.$spotify-font;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          .name {
+            font-weight: 600;
+          }
+          span:nth-of-type(2) {
+            color: rgba($color: #ffffff, $alpha: 0.5);
+          }
+        }
+        &:hover {
+          cursor: pointer;
+          @media screen and (min-width: constants.$sm) {
+            background-color: rgba(170, 170, 170, 0.2);
+            transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+          }
+        }
+      }
+    }
+  }
+  .songs-span {
+    color: azure;
+    font-family: constants.$spotify-font;
+    font-size: 2em;
+    font-weight: 600;
+    margin: 0 0 0.5em 1em;
+  }
+  .redirect {
+    display: none;
+  }
+  .redirect-active {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    left: 0;
+    top: 0;
+    z-index: 3;
+    .info {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      font-family: constants.$spotify-font;
+      color: azure;
+      font-size: 0.9em;
+      @media screen and (min-width: constants.$sm) {
+        font-size: 1.4em;
+      }
+      font-weight: 600;
+      .icon {
+        color: rgba(255, 255, 255, 0.33);
+      }
+      span:nth-of-type(1) {
+        align-self: end;
+      }
+      span:nth-of-type(2) {
+        align-self: start;
+        a {
+          text-decoration: none;
+          color: constants.$spotify-green;
+        }
+        div {
+          display: flex;
+          justify-content: center;
+          font-size: 0.6em;
+          font-weight: 300;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import PlaylistView from "./components/PlaylistView";
 import HomeView from "./components/HomeView";
 import LibraryView from "./components/LibraryView";
 import CreatePlaylistsView from "./components/CreatePlaylistView";
+import SearchView from "./components/SearchView";
 import "./content.scss";
 
 const Content = () => {
@@ -20,6 +21,9 @@ const Content = () => {
         </Route>
         <Route exact path="/create-playlist">
           <CreatePlaylistsView />
+        </Route>
+        <Route exact path="/search">
+          <SearchView />
         </Route>
       </Switch>
     </div>

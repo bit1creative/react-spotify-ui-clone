@@ -21,15 +21,16 @@ const SectionCard = ({ el }) => {
   );
 };
 
-const SectionView = ({ name, selector }) => {
-  const items = useSelector(
-    (state) =>
-      state.playlists?.[selector]?.albums?.items ||
-      state.playlists?.[selector]?.playlists?.items
+export const SectionView = ({ name, selector, isSearch = false }) => {
+  const items = useSelector((state) =>
+    isSearch
+      ? state?.search?.result?.[selector]?.items
+      : state.playlists?.[selector]?.albums?.items ||
+        state.playlists?.[selector]?.playlists?.items
   );
   return (
     <div className="section-view">
-      <span className="title">{name}</span>
+      {name ? <span className="title">{name}</span> : null}
       <SkeletonTheme
         color="rgba(255, 255, 255, 0.1)"
         highlightColor="rgba(255, 255, 255, 0.5)"
