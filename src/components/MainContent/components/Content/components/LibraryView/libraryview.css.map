@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,IAAI,CAAJ,6BAAI;AAEJ,AAAA,aAAa,CAAC;EACZ,WAAW,EAAE,IAAI;CAClB",
+    "sources": [
+        "libraryview.scss"
+    ],
+    "names": [],
+    "file": "libraryview.css"
+}

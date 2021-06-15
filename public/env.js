@@ -182,7 +182,7 @@ window.env = {
   "npm_package_description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "npm_package_eslintConfig_extends_0": "react-app",
   "npm_package_eslintConfig_extends_1": "react-app/jest",
-  "npm_package_gitHead": "1c9b1b00044c2d3dea91864f23db4edf57dc9dda",
+  "npm_package_gitHead": "78d12b796c7937802682c08f66725e2cdf29be29",
   "npm_package_name": "spotify",
   "npm_package_private": "true",
   "npm_package_readmeFilename": "README.md",
