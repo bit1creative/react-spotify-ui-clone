@@ -159,3 +159,11 @@ export const Search = async (qry) => {
     ...searchTracks,
   };
 };
+
+export const getPlaybackState = async () => {
+  return await spotifyClient.getMyCurrentPlaybackState();
+};
+
+export const getRecentlyPlayed = async () => {
+  return await spotifyClient.getMyRecentlyPlayedTracks({ limit: 10 });
+};

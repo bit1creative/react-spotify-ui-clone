@@ -25,7 +25,7 @@ const PlaylistHeader = ({ user, playlist, isLikedSongs, picURL }) => {
               )}
             </div>
           ) : (
-            <Skeleton height={220} width={220} className="sm" />
+            <Skeleton className="sm skeleton-image" />
           )}
           <div className="playlist">
             <span className="playlist-span">PLAYLIST</span>

@@ -3,7 +3,8 @@
 .songs {
   font-family: constants.$spotify-font;
   user-select: none;
-  padding: 2em 0.5em 0 0.5em;
+  // padding: 2em 0.5em 5em 0.5em;
+  padding: 2em 0.5em 1em 0.5em;
   @media screen and (min-width: constants.$md) {
     padding: 2em 3em 1em 3em;
   }

@@ -8,6 +8,7 @@
   left: 0;
   @media only screen and (min-width: constants.$sm) {
     background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
     left: 20%;
   }
   @media only screen and (min-width: constants.$lg) {

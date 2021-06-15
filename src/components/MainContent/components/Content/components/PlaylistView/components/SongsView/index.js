@@ -49,10 +49,11 @@ export const Song = ({ song, index, isSaved, isSearch = false }) => {
         </div>
         <BiPlay className="play-icon sm-flex" />
         <div className="song-name-wrapper">
-          {isSaved || isSearch ? (
+          {song?.track?.album?.images[0]?.url || song?.album?.images[0]?.url ? (
             <img
               src={
-                song?.track?.album?.images[0]?.url || song.album.images[0].url
+                song?.track?.album?.images[0]?.url ||
+                song?.album?.images[0]?.url
               }
               alt=""
             />

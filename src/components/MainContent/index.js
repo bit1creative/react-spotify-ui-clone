@@ -1,7 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
-import Player from "./components/Player";
+// import Player from "./components/Player";
 import "./maincontent.scss";
 
 const MainContent = () => {
@@ -13,7 +13,7 @@ const MainContent = () => {
           <Content></Content>
         </Router>
       </div>
-      <Player></Player>
+      {/* <Player /> */}
     </div>
   );
 };

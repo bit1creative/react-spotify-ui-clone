@@ -2,14 +2,16 @@
 
 .main-page {
   min-width: 350px;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(0, 0, 0, 0.92);
   height: 100vh;
+  display: flex;
+  flex-direction: column;
   .main-page-content {
     height: 100%;
     display: grid;
-    grid-template-rows: 90% 10%;
+    grid-template-rows: 92% 8%;
     @media only screen and (min-width: constants.$sm) {
+      // height: 88%;
       grid-template-columns: 20% auto;
       grid-template-rows: auto;
     }
