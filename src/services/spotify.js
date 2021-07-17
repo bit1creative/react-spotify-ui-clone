@@ -19,10 +19,6 @@ const scopes = [
   "playlist-read-private",
   "playlist-modify-private",
   "playlist-modify-public",
-  "streaming",
-  "app-remote-control",
-  "user-read-playback-position",
-  "ugc-image-upload",
 ];
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(

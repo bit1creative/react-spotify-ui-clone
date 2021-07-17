@@ -7,6 +7,7 @@
   height: 100vh;
   // overflow: hidden;
   img {
+    margin-top: 4rem;
     width: 70%;
     @media only screen and (min-width: constants.$sm) {
       width: 50%;
@@ -22,11 +23,44 @@
     }
   }
   a {
+    // margin-bottom: 4rem;
     padding: 20px;
     border-radius: 99px;
+    align-self: flex-start;
     font-weight: 600;
     color: white;
     text-decoration: none;
     background-color: constants.$spotify-green;
+  }
+
+  .credentials-wrapper {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: justify;
+    .credentials-box {
+      padding: 1rem;
+      width: 80%;
+      @media only screen and (min-width: constants.$sm) {
+        width: 30%;
+      }
+      color: constants.$spotify-green;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      .email-title {
+        margin-top: 1rem;
+        font-weight: 500;
+        .email {
+          color: whitesmoke;
+        }
+      }
+      .password-title {
+        font-weight: 500;
+        .password {
+          color: whitesmoke;
+        }
+      }
+    }
   }
 }

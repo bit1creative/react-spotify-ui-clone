@@ -51,7 +51,7 @@ export const userInfoSlice = createSlice({
         ...state,
         username: action?.payload.display_name,
         link: action?.payload.external_urls.spotify,
-        imageLink: action?.payload.images[0].url,
+        imageLink: action?.payload.images[0]?.url,
         likedSongs: action?.payload.likedSongs,
         playlists: action?.payload.playlists,
         // albums: action.payload.albums,
