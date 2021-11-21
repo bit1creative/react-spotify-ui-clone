@@ -1,0 +1,19 @@
+@use 'src/constants';
+
+.error-message {
+  user-select: none;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  span {
+    color: azure;
+    font-family: constants.$spotify-font;
+    font-weight: 600;
+    font-size: 1.4rem;
+  }
+  a {
+    text-decoration: none;
+    color: constants.$spotify-green
+  }
+}

@@ -2,9 +2,6 @@
 
 .section-view {
   padding-top: 0em;
-  // &:last-of-type {
-  //   padding-bottom: 3em;
-  // }
   @media screen and (min-width: constants.$sm) {
     padding-top: 3em;
     &:last-of-type {
@@ -40,6 +37,7 @@
       @media screen and (min-width: constants.$sm) {
         width: 100%;
         display: grid;
+        overflow: hidden;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 0 0 0;
         row-gap: 2%;
@@ -61,10 +59,8 @@
       -webkit-overflow-scrolling: touch;
       a {
         width: 100%;
-        overflow: hidden;
         text-decoration: none;
         border-radius: 5px;
-        padding-right: 1em;
         &:last-of-type {
           padding-right: 0;
         }
@@ -78,9 +74,6 @@
             background-color: rgba(170, 170, 170, 0.05);
           }
           transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-          box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
-          -webkit-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
-          -moz-box-shadow: 2px -1px 41px 1px rgba(0, 0, 0, 0.36);
           .section-card-image {
             padding: 0;
             width: 14em;
@@ -99,7 +92,7 @@
             font-family: constants.$spotify-font;
             font-weight: 600;
             font-size: 1.1em;
-            padding-bottom: 1em;
+            padding: 0.5em 0;
             padding-left: 1em;
             width: 12em;
           }

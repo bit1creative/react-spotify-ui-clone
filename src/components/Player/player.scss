@@ -1,0 +1,17 @@
+@use '../../../../constants';
+
+.player {
+  position: absolute;
+  z-index: 10;
+  bottom: 8%;
+  height: 8%;
+  @media screen and (min-width: constants.$sm) {
+    height: 12%;
+    bottom: 0;
+  }
+  width: 100%;
+  border-top: 1px solid rgba($color: #3d3d3d, $alpha: 0.5);
+  background-color: #181818;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+}

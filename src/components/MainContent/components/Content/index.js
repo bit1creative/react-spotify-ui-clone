@@ -5,9 +5,16 @@ import HomeView from "./components/HomeView";
 import LibraryView from "./components/LibraryView";
 import CreatePlaylistsView from "./components/CreatePlaylistView";
 import SearchView from "./components/SearchView";
+import UserIsNotInDashboard from '../../../UserIsNotInDashboard'
 import "./content.scss";
+import {useSelector} from "react-redux";
 
 const Content = () => {
+  const user = useSelector((state) => state.user);
+
+  if(user.error) {
+    return <UserIsNotInDashboard />
+  }
   return (
     <div className="content">
       <UserInfo></UserInfo>

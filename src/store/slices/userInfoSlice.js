@@ -23,6 +23,11 @@ export const fetchUserInfo = createAsyncThunk(
       };
     } catch (error) {
       console.log(error);
+      if(error.status === 403) {
+        return {
+          error: "User is not added to dashboard."
+        }
+      }
     }
   }
 );
@@ -43,10 +48,17 @@ export const userInfoSlice = createSlice({
     imageLink: null,
     likedSongs: null,
     playlists: null,
+    error: null
     // albums: null,
   },
   extraReducers: {
     [fetchUserInfo.fulfilled]: (state, action) => {
+      if(action.payload.error) {
+        return{
+          ...state,
+          error: action.payload.error
+        }
+      }
       return {
         ...state,
         username: action?.payload.display_name,
