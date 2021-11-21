@@ -1,6 +1,6 @@
 const authEndpoint = "https://accounts.spotify.com/authorize";
-const redirectUri = "https://not-spotify-60242.web.app";
-// const redirectUri = "http://localhost:3000/"
+// const redirectUri = "https://not-spotify-60242.web.app";
+const redirectUri = "http://localhost:3000/"
 
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 

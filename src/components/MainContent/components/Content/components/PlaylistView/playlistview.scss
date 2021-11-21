@@ -1,5 +1,10 @@
 @use '../../../../../../constants';
 
 .playlist {
-  height: 100%;
+  height: max-content;
+  margin-bottom: 15%;
+  @media screen and (min-width: constants.$sm) {
+    margin-bottom: 0%;
+
+  }
 }
